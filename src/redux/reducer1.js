@@ -1,21 +1,19 @@
 // action types
-const SET_INT = 'SET_INT';
-const ADD_NEW_INT = 'ADD_NEW_INT';
+const GET_INT = 'GET_INT';
+const DUPLICATE_CURRENT_INT = 'DUPLICATE_CURRENT_INT';
 const REMOVE_INT = 'REMOVE_INT';
 const UPDATE_INT = 'UPDATE_INT';
 
 // action creators
-export const getInt = (int) => ({
-  type: SET_INT,
+export const getInt = () => ({
+  type: GET_INT,
+})
+export const duplicateCurrentInt = (int) => ({
+  type: DUPLICATE_CURRENT_INT,
   int
 })
-export const addNewInt = (int) => ({
-  type: ADD_NEW_INT,
-  int
-})
-export const removeInt = (int) => ({
+export const removeInt = () => ({
   type: REMOVE_INT,
-  int
 })
 export const updateInt = (intId, updatedInt) => ({
   type: UPDATE_INT,
@@ -36,7 +34,7 @@ export const fetchSingleInt = () => {
 export const postNewInt = (int) => {
   return async (dispatch) => {
     try {
-      dispatch(addNewInt(int));
+      dispatch(duplicateCurrentInt(int));
     } catch (error) {
       console.error(error);
     }
@@ -61,16 +59,18 @@ export const updateIntThunk = (int, updatedInt) => {
   }
 }
 
-let initialState = {};
+let initialState = { initialInteger: 10 };
 
 export default function reducer1(state = initialState, action) {
   switch (action.type) {
-    case SET_INT:
-      return action.int;
-    case ADD_NEW_INT:
+    case GET_INT:
+      return state
+    case DUPLICATE_CURRENT_INT:
       return action.int + action.int;
     case UPDATE_INT:
       return action.int + action.updatedInt;
+    case REMOVE_INT:
+      return { initialInteger: null }
     default:
       return state;
   }
