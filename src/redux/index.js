@@ -9,3 +9,4 @@ const appReducer = combineReducers({
 })
 
 export default appReducer
+// smart/dumb components

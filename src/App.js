@@ -43,7 +43,7 @@ class App extends React.Component {
       this.setState({
         data: this.props.reduxStore.state2
       })
-      console.log("redux store: ", this.props.reduxStore)
+      console.log("redux store: ", this.props)
     }
   }
 
@@ -52,7 +52,7 @@ class App extends React.Component {
     this.props.getSingleInt();
     this.props.duplicateCurrentInt(3);
     this.props.removeIntThunk();
-    this.props.updateIntThunk(3, 20);
+    this.props.updateIntThunk(10, 20);
 
 
     this.props.fetchText();
